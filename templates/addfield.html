@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>addfield form</title>
+</head>
+<body>
+{% block content %}
+    <main id="main">
+    <section id="Addfield">
+        <div class="container">
+            <div class="row mt-5 justify-content-center align-items-center">
+                <div class="col-lg-6">
+                    {% for messages in messages %}
+                    <div class="alert-success p-3"> {{ messages }}</div>
+                    {% endfor %}
+                    <h4 class="text-center text-decoration-underline">Add Field</h4>
+                <form method="post" class="form-group">
+                    {% csrf_token %}
+                <input type="text" class="form-control" name="field_name" placeholder="input_field_name" required>
+                <input type="text" class="form-control mt-4" name="field_location" placeholder="input_field_location" required>
+                <input type="number" class="form-control mt-4" name="field_capacity" placeholder="input_field_capacity" required>
+                <button class="btn btn-primary mt-4" type="submit">submit</button>
+                </form>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    </main>
+
+{% endblock %}
+</body>
+</html>

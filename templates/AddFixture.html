@@ -1,0 +1,39 @@
+{% extends 'index.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AddFixture</title>
+</head>
+<body>
+{% block content %}
+    <main id="main">
+    <section id="Addfixture">
+        <div class="container">
+            <div class="row mt-5 justify-content-center align-items-center">
+                <div class="col-lg-6">
+                     {% for messages in messages %}
+                    <div class="alert-success p-3"> {{ messages }}</div>
+                    {% endfor %}
+                    <h4 class="text-center text-decoration-underline">Add Fixture</h4>
+                <form method="post" class="form-group" action="{% url 'AddFixture' %}">
+                    {% csrf_token %}
+                    <div class="form-group row">
+                  {% for field in form %}
+                      <div class="form-group row m-2">
+                      <label class="fw-bold">{{ field.label_tag }}</label>
+                      {{ field }}{{ field.help_text }}{{ field.errors }}
+                      </div>
+                    {% endfor %}
+                <button class="btn btn-primary mt-4" type="submit">submit</button>
+                </form>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    </main>
+{% endblock %}
+</body>
+</html>

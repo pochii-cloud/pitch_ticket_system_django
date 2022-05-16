@@ -1,0 +1,48 @@
+{% extends 'index.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fixtures</title>
+</head>
+<body>
+{% block content %}
+    <main class="main m-5">
+    <div class="table-responsive"><br>
+    <table class="table" style="margin-top: 40px;">
+        <thead>
+        <tr class="fw-bold bg-gray text-white">
+            <td>Sn</td>
+            <td>TeamA</td>
+            <td>Vs</td>
+            <td>TeamB</td>
+            <td>Time</td>
+            <td>Field</td>
+        </tr>
+        </thead>
+        <tbody>
+        <style>
+            tr:hover{
+                background-color: gray;
+            }
+        </style>
+        {% for fixtures in fixtures %}
+            <tr onclick="window.location='{% url 'FixtureDetail' fixtures.id %}';">
+            <td>{{ forloop.counter }}</td>
+            <td>{{ fixtures.TeamA }}</td>
+            <td>Vs</td>
+            <td>{{ fixtures.TeamB }}</td>
+            <td>{{ fixtures.Time }}</td>
+            <td>{{ fixtures.Ground }}</td>
+             </tr>
+
+
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    </main>
+{% endblock %}
+</body>
+</html>

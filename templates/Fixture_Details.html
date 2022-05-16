@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FixtureDetails</title>
+</head>
+<body>
+{% block content %}
+    <main id="main">
+    <section class="Fixture_Detail">
+        <div class="container">
+     <div class="card text-center mt-5">
+  <div class="card-header">
+    {{ fixtures.Ground }} stadium
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{ fixtures.TeamA }} vs {{ fixtures.TeamB }}</h5>
+      <p class="card-text">can <b>{{ fixtures.TeamA.slogan }}</b> win against the <b>{{ fixtures.TeamB.slogan }}</b></p>
+    <a href="{% url 'MakeReservation' fixtures.id %}" class="btn btn-primary">Make Resevation </a>
+  </div>
+  <div class="card-footer text-muted">
+   match in  2 days time
+  </div>
+</div>
+     </div>
+    </section>
+    </main>
+
+{% endblock %}
+</body>
+</html>

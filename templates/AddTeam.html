@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>addteamform</title>
+</head>
+<body>
+{% block content %}
+    <main id="main">
+    <section id="Addfield">
+        <div class="container">
+            <div class="row mt-5 justify-content-center align-items-center">
+                <div class="col-lg-6">
+                    {% for messages in messages %}
+                    <div class="alert-success p-3"> {{ messages }}</div>
+                    {% endfor %}
+                    <h4 class="text-center text-decoration-underline">Add Team</h4>
+                <form method="post" class="form-group">
+                    {% csrf_token %}
+                <input type="text" class="form-control" name="team_name" placeholder="input_team_name" required>
+                <input type="text" class="form-control mt-4" name="team_slogan" placeholder="input_team_slogan" required>
+                <button class="btn btn-primary mt-4" type="submit">submit</button>
+                </form>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    </main>
+
+{% endblock %}
+</body>
+</html>

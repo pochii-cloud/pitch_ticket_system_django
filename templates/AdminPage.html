@@ -1,0 +1,105 @@
+{% extends 'index.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AdminPage</title>
+</head>
+<body>
+
+{% block content %}
+    <main id="main m-5">
+    <section id="AdminPage">
+        <div class="container">
+            <div class="row border 2px solid gray p-3 mt-5">
+            <h3 class="text-center text-decoration-underline mt-1">Available Fixtures</h3>
+           <table class="table">
+          <thead>
+          <tr>
+              <td>SN</td>
+              <td>TeamA</td>
+              <td>Vs</td>
+              <td>TeamB</td>
+              <td>Pitch</td>
+              <td>Action</td>
+              <td>Action</td>
+              <td>Action</td>
+          </tr>
+          </thead>
+          <tbody>
+            <tr>
+                <td>1</td>
+                <td>Arsenal</td>
+                <td>vs</td>
+                <td>Chelsea</td>
+                <td>Emirates</td>
+                <td><a class="btn btn-danger">Delete</a></td>
+                <td><a class="btn btn-warning">Update</a> </td>
+                <td><a class="btn btn-primary" href="{% url 'AddFixture' %}">Add</a> </td>
+            </tr>
+          </tbody>
+      </table>
+                    </div>
+                </div>
+
+        <div class="container">
+            <div class="row border 2px solid gray p-3 mt-5">
+            <h3 class="text-center text-decoration-underline mt-1">Available Fields</h3>
+           <table class="table">
+          <thead>
+          <tr>
+              <td>SN</td>
+              <td>Name</td>
+              <td>Capacity</td>
+              <td>Action</td>
+              <td>Action</td>
+              <td>Action</td>
+          </tr>
+          </thead>
+          <tbody>
+            <tr>
+                <td>1</td>
+                <td>Anfield</td>
+                <td>45000</td>
+                <td><a class="btn btn-danger">Delete</a></td>
+                <td><a class="btn btn-warning">Update</a> </td>
+                <td><a class="btn btn-primary" href="{% url 'AddField' %}">Add</a> </td>
+            </tr>
+          </tbody>
+      </table>
+                    </div>
+                </div>
+        <div class="container">
+            <div class="row border 2px solid gray p-3 mt-5">
+            <h3 class="text-center text-decoration-underline mt-1">Available Teams</h3>
+           <table class="table">
+          <thead>
+          <tr>
+              <td>SN</td>
+              <td>Name</td>
+              <td>Slogan</td>
+              <td>Action</td>
+              <td>Action</td>
+              <td>Action</td>
+          </tr>
+          </thead>
+          <tbody>
+            <tr>
+                <td>1</td>
+                <td>Man Chester</td>
+                <td>Red devils</td>
+                <td><a class="btn btn-danger">Delete</a></td>
+                <td><a class="btn btn-warning">Update</a> </td>
+                <td><a class="btn btn-primary" href="{% url 'AddTeam' %}">Add</a> </td>
+            </tr>
+          </tbody>
+      </table>
+                    </div>
+                </div>
+
+    </section>
+    </main>
+{% endblock %}
+</body>
+</html>

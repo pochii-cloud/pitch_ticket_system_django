@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ReservationPage</title>
+</head>
+<body>
+{% block content %}
+ <main id="main" class="mt-5">
+    <section class="">
+        <div class="container">
+     <div class="card text-center mt-5">
+  <div class="card-header">
+
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Reservation Confirmation</h5>
+      <p class="card-text">{% for messages in messages  %}{{ messages }}{% endfor %}</p>
+    <a href="" class="btn btn-primary">Print Ticket </a>
+  </div>
+  <div class="card-footer text-muted">
+   match in  2 days time
+  </div>
+</div>
+     </div>
+    </section>
+    </main>
+{% endblock %}
+</body>
+</html>
