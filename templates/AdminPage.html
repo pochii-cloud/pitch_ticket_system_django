@@ -28,16 +28,18 @@
           </tr>
           </thead>
           <tbody>
+          {% for fixture in fixture %}
             <tr>
-                <td>1</td>
-                <td>Arsenal</td>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ fixture.TeamA }}</td>
                 <td>vs</td>
-                <td>Chelsea</td>
-                <td>Emirates</td>
-                <td><a class="btn btn-danger">Delete</a></td>
-                <td><a class="btn btn-warning">Update</a> </td>
+                <td>{{ fixture.TeamB }}</td>
+                <td>{{ fixture.Ground }}</td>
+                <td><a class="btn btn-danger" href="{% url 'DeleteFixture' fixture.id %}">Delete</a></td>
+                <td><a class="btn btn-warning" href="{% url 'UpdateFixture' fixture.id %}">Update</a> </td>
                 <td><a class="btn btn-primary" href="{% url 'AddFixture' %}">Add</a> </td>
             </tr>
+          {% endfor %}
           </tbody>
       </table>
                     </div>
@@ -58,14 +60,16 @@
           </tr>
           </thead>
           <tbody>
+              {% for field in field %}
             <tr>
-                <td>1</td>
-                <td>Anfield</td>
-                <td>45000</td>
-                <td><a class="btn btn-danger">Delete</a></td>
-                <td><a class="btn btn-warning">Update</a> </td>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ field.name }}</td>
+                <td>{{ field.capacity }}</td>
+                <td><a class="btn btn-danger" href="{% url 'DeleteField' field.id %}">Delete</a></td>
+                <td><a class="btn btn-warning" href="{% url 'UpdateField' field.id %}">Update</a> </td>
                 <td><a class="btn btn-primary" href="{% url 'AddField' %}">Add</a> </td>
             </tr>
+          {% endfor %}
           </tbody>
       </table>
                     </div>

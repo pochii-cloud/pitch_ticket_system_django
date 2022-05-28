@@ -3,8 +3,9 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
+from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, UpdateView, DeleteView
 
 from core.forms import AddFixtureForm
 from core.models import Field, Team, Contact, Fixture
@@ -51,6 +52,12 @@ class AboutUs(TemplateView):
 
 class AdminPage(TemplateView):
     template_name = 'AdminPage.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['fixture'] = Fixture.objects.all()
+        context['field'] = Field.objects.all()
+        return context
 
 
 class AddField(View):
@@ -102,25 +109,9 @@ class FixtureDetail(TemplateView):
     template_name = 'Fixture_Details.html'
 
     def get_context_data(self, **kwargs):
-        context = super(FixtureDetail, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context['fixtures'] = Fixture.objects.get(pk=self.kwargs.get('pk'))
         return context
-
-
-class MakeReservation(View):
-    def get(self, request, pk):
-        fixtures = Fixture.objects.get(pk=pk)
-        if not fixtures.Booked:
-            fixtures.Booked = True
-            fixtures.Ground.capacity = - 1
-            fixtures.save()
-            messages.info(request, 'Your reservation made successfully!!')
-        else:
-            messages.info(request, 'Your reservation is already made!!')
-        return render(request, 'MakeReservation.html')
-
-    def post(self, request):
-        return render(request, 'MakeReservation.html')
 
 
 # class GeneratePdf(View):
@@ -132,22 +123,27 @@ class MakeReservation(View):
 #         return HttpResponse(pdf, content_type='application/pdf')
 
 
-def GeneratePdf(request):
-    sales = [
-        {"item": "Keyboard", "amount": "$120,00"},
-        {"item": "Mouse", "amount": "$10,00"},
-        {"item": "House", "amount": "$1 000 000,00"},
-    ]
-    pdf = FPDF('P', 'mm', 'A4')
-    pdf.add_page()
-    pdf.set_font('courier', 'B', 16)
-    pdf.cell(40, 10, 'This is what you have sold this month so far:', 0, 1)
-    pdf.cell(40, 10, '', 0, 1)
-    pdf.set_font('courier', '', 12)
-    pdf.cell(200, 8, f"{'Item'.ljust(30)} {'Amount'.rjust(20)}", 0, 1)
-    pdf.line(10, 30, 150, 30)
-    pdf.line(10, 38, 150, 38)
-    for line in sales:
-        pdf.cell(200, 8, f"{line['item'].ljust(30)} {line['amount'].rjust(20)}", 0, 1)
-    pdf.output('report.pdf', 'F')
-    return FileResponse(open('report.pdf', 'rb'), as_attachment=True, content_type='application/pdf')
+class UpdateFixture(UpdateView):
+    template_name = 'update_fixture.html'
+    model = Fixture
+    success_url = reverse_lazy('Homepage')
+    fields = ['TeamA', 'TeamB', 'Date', 'Time', 'Ground']
+
+
+class DeleteFixture(DeleteView):
+    template_name = 'DeleteFixture.html'
+    model = Fixture
+    success_url = '/'
+
+
+class UpdateField(UpdateView):
+    template_name = 'update_fixture.html'
+    model = Field
+    success_url = reverse_lazy('Homepage')
+    fields = ['name', 'capacity', 'location']
+
+
+class DeleteField(DeleteView):
+    template_name = 'DeleteFixture.html'
+    model = Field
+    success_url = '/'

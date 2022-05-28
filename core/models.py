@@ -34,7 +34,7 @@ class Fixture(models.Model):
     Ground = models.ForeignKey(Field, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.TeamA) + str('Vs') + str(self.TeamB) + str('on') + str(self.Ground)
+        return str(self.TeamA) + ":" + str('Vs') + ":" + str(self.TeamB)
 
 
 class Contact(models.Model):

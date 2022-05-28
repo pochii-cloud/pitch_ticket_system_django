@@ -4,28 +4,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ReservationPage</title>
+    <title>PrintTicket</title>
 </head>
 <body>
 {% block content %}
- <main id="main" class="mt-5">
+     <main id="main" class="mt-5">
     <section class="">
         <div class="container">
+            {% for messages in messages %}
+            <div class="alert-success p-3">{{ messages }}</div>
+            {% endfor %}
      <div class="card text-center mt-5">
   <div class="card-header">
 
   </div>
   <div class="card-body">
-    <h5 class="card-title">booking form</h5>
-      <form method="post">
-          {% csrf_token %}
-          {{ form.as_p }}
-          <button class="btn btn-primary">Submit</button>
-      </form>
+    <h5 class="card-title">Ticket Ready</h5>
 
+      <a class="btn btn-primary" href="{% url 'GenerateTicketPdf' reservation.id  %}">print ticket</a>
   </div>
   <div class="card-footer text-muted">
-   match in  2 days time
   </div>
 </div>
      </div>

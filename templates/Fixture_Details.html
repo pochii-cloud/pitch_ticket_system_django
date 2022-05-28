@@ -18,9 +18,10 @@
   <div class="card-body">
     <h5 class="card-title">{{ fixtures.TeamA }} vs {{ fixtures.TeamB }}</h5>
       <p class="card-text">can <b>{{ fixtures.TeamA.slogan }}</b> win against the <b>{{ fixtures.TeamB.slogan }}</b></p>
-    <a href="{% url 'MakeReservation' fixtures.id %}" class="btn btn-primary">Make Resevation </a>
+    <a href="{% url 'ReservationPage' fixtures.id %}" class="btn btn-primary">Make Resevation </a>
   </div>
   <div class="card-footer text-muted">
+      {{ fixtures.Ground.capacity }}seats remaining<br>
    match in  2 days time
   </div>
 </div>
