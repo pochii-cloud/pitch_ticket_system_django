@@ -89,14 +89,16 @@
           </tr>
           </thead>
           <tbody>
+          {% for team in team %}
             <tr>
-                <td>1</td>
-                <td>Man Chester</td>
-                <td>Red devils</td>
-                <td><a class="btn btn-danger">Delete</a></td>
-                <td><a class="btn btn-warning">Update</a> </td>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ team.name }}</td>
+                <td>{{ team.slogan }}</td>
+                <td><a class="btn btn-danger" href="{% url 'DeleteTeam' team.id %}">Delete</a></td>
+                <td><a class="btn btn-warning" href="{% url 'UpdateTeam' team.id %}">Update</a> </td>
                 <td><a class="btn btn-primary" href="{% url 'AddTeam' %}">Add</a> </td>
             </tr>
+          {% endfor %}
           </tbody>
       </table>
                     </div>

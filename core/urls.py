@@ -14,6 +14,8 @@ urlpatterns = [
     path('UpdateFixture/<int:pk>/', UpdateFixture.as_view(), name='UpdateFixture'),
     path('DeleteFixture/<int:pk>/', DeleteFixture.as_view(), name='DeleteFixture'),
     path('AddTeam/', AddTeam.as_view(), name='AddTeam'),
+    path('UpdateTeam/<int:pk>/', UpdateTeam.as_view(), name='UpdateTeam'),
+    path('DeleteTeam/<int:pk>/', DeleteTeam.as_view(), name='DeleteTeam'),
     path('ContactUs/', ContactUs.as_view(), name='ContactUs'),
     path('AboutUs/', AboutUs.as_view(), name='AboutUs'),
 ]

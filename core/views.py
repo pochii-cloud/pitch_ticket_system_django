@@ -57,6 +57,7 @@ class AdminPage(TemplateView):
         context = super().get_context_data(**kwargs)
         context['fixture'] = Fixture.objects.all()
         context['field'] = Field.objects.all()
+        context['team'] = Team.objects.all()
         return context
 
 
@@ -146,4 +147,17 @@ class UpdateField(UpdateView):
 class DeleteField(DeleteView):
     template_name = 'DeleteFixture.html'
     model = Field
+    success_url = '/'
+
+
+class UpdateTeam(UpdateView):
+    template_name = 'update_fixture.html'
+    model = Team
+    fields = ['name', 'slogan']
+    success_url = '/'
+
+
+class DeleteTeam(DeleteView):
+    template_name = 'DeleteFixture.html'
+    model = Team
     success_url = '/'

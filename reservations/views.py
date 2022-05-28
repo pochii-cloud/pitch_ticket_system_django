@@ -1,3 +1,5 @@
+import random
+
 from django.contrib import messages
 from django.http import FileResponse
 from django.shortcuts import render, redirect
@@ -22,7 +24,9 @@ class ReservationPage(View):
         fixture = Fixture.objects.get(pk=pk)
         form.instance.fixture = fixture
         if form.is_valid():
-            form.save()
+            reservation = form.save()
+        else:
+            return render(request, 'MakeReservation.html', {'form': form})
         if not fixture.Booked:
             persons = form.cleaned_data.get('persons')
             fixture.Ground.capacity -= persons
@@ -32,7 +36,7 @@ class ReservationPage(View):
             fixture.Ground.capacity -= persons
             fixture.Ground.save()
             messages.info(request, 'reservation made.You can print ticket now')
-            return redirect('PrintTicket', pk=pk)
+            return redirect('PrintTicket', reservation.pk)
         return render(request, 'MakeReservation.html', {'form': form})
 
 
@@ -45,24 +49,30 @@ class PrintTicket(TemplateView):
         return context
 
 
-def GenerateTicketPdf(request, pk):
-    reservation = Reservation.objects.get(pk=pk)
-    details = [
-        {"item": "Ticket for:", "details": "reservations.fixture"},
-        {"item": "Fixture", "details": "reservation.fixture"},
-        {"item": "persons", "details": "reservation.persons"},
-        {"item": "stadium", "details": "reservation.fixture.Ground.name"},
-    ]
-    pdf = FPDF('P', 'mm', 'A4')
-    pdf.add_page()
-    pdf.set_font('courier', 'B', 16)
-    pdf.cell(40, 10, 'EazyTicket for you:', 0, 1)
-    pdf.cell(40, 10, '', 0, 1)
-    pdf.set_font('courier', '', 12)
-    pdf.cell(200, 8, f"{'Item'.ljust(30)} {'Details'.rjust(20)}", 0, 1)
-    pdf.line(10, 30, 150, 30)
-    pdf.line(10, 38, 150, 38)
-    for line in details:
-        pdf.cell(200, 8, f"{line['item'].ljust(30)} {line['details']}", 0, 1)
-    pdf.output('report.pdf', 'F')
-    return FileResponse(open('report.pdf', 'rb'), as_attachment=True, content_type='application/pdf')
+class GenerateTicketPdf(View):
+    def get(self, request, pk):
+        reservation = Reservation.objects.get(pk=pk)
+        rand_num = random.randrange(100, 100000000)
+        reservation.ticket_no = rand_num
+        reservation.save()
+        details = [
+            {"item": "Ticket for:", "details": reservation.username},
+            {"item": "Fixture", "details": reservation.fixture},
+            {"item": "persons", "details": reservation.persons},
+            {"item": "stadium", "details": reservation.fixture.Ground.name},
+            {"item": "ticketnumber", "details": reservation.ticket_no},
+        ]
+        pdf = FPDF('P', 'mm', 'A4')
+        pdf.add_page()
+        pdf.set_font('courier', 'B', 16)
+        pdf.cell(40, 10, 'EazyTicket for you:', 0, 1)
+        pdf.cell(40, 10, '', 0, 1)
+        pdf.set_font('courier', '', 12)
+        pdf.cell(200, 8, f"{'Item'.ljust(30)} {'Details'.rjust(20)}", 0, 1)
+        pdf.line(10, 30, 150, 30)
+        pdf.line(10, 38, 150, 38)
+        for line in details:
+            pdf.cell(200, 8, f"{line['item'].ljust(30)} {line['details']}", 0, 1)
+        pdf.output('report.pdf', 'F')
+        return FileResponse(open('report.pdf', 'rb'), as_attachment=True, content_type='application/pdf')
+
