@@ -1,6 +1,7 @@
 import random
 
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import FileResponse
 from django.shortcuts import render, redirect
 
@@ -35,9 +36,8 @@ class ReservationPage(View):
             persons = form.cleaned_data.get('persons')
             fixture.Ground.capacity -= persons
             fixture.Ground.save()
-            messages.info(request, 'reservation made.You can print ticket now')
-            return redirect('PrintTicket', reservation.pk)
-        return render(request, 'MakeReservation.html', {'form': form})
+        messages.info(request, 'reservation made.You can print ticket now')
+        return redirect('PrintTicket', reservation.pk)
 
 
 class PrintTicket(TemplateView):
@@ -76,3 +76,10 @@ class GenerateTicketPdf(View):
         pdf.output('report.pdf', 'F')
         return FileResponse(open('report.pdf', 'rb'), as_attachment=True, content_type='application/pdf')
 
+
+class MyReservations(View, LoginRequiredMixin):
+    def get(self, request):
+        return render(request, 'MyBookings.html')
+
+    def post(self, request):
+        return render(request, 'MyBookings.html')

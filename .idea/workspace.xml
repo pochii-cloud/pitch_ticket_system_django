@@ -2,20 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="841607cf-139a-430b-842a-01fb8e65424f" name="Default Changelist" comment="">
+      <change afterPath="D:/PycharmProjects/playground_ticket_system/templates/MyBookings.html" afterDir="false" />
       <change beforePath="D:/PycharmProjects/playground_ticket_system/.idea/workspace.xml" beforeDir="false" afterPath="D:/PycharmProjects/playground_ticket_system/.idea/workspace.xml" afterDir="false" />
       <change beforePath="D:/PycharmProjects/playground_ticket_system/account/urls.py" beforeDir="false" afterPath="D:/PycharmProjects/playground_ticket_system/account/urls.py" afterDir="false" />
       <change beforePath="D:/PycharmProjects/playground_ticket_system/account/views.py" beforeDir="false" afterPath="D:/PycharmProjects/playground_ticket_system/account/views.py" afterDir="false" />
-      <change beforePath="D:/PycharmProjects/playground_ticket_system/core/urls.py" beforeDir="false" afterPath="D:/PycharmProjects/playground_ticket_system/core/urls.py" afterDir="false" />
+      <change beforePath="D:/PycharmProjects/playground_ticket_system/core/models.py" beforeDir="false" afterPath="D:/PycharmProjects/playground_ticket_system/core/models.py" afterDir="false" />
       <change beforePath="D:/PycharmProjects/playground_ticket_system/core/views.py" beforeDir="false" afterPath="D:/PycharmProjects/playground_ticket_system/core/views.py" afterDir="false" />
       <change beforePath="D:/PycharmProjects/playground_ticket_system/db.sqlite3" beforeDir="false" afterPath="D:/PycharmProjects/playground_ticket_system/db.sqlite3" afterDir="false" />
-      <change beforePath="D:/PycharmProjects/playground_ticket_system/playground_ticket_system/settings.py" beforeDir="false" afterPath="D:/PycharmProjects/playground_ticket_system/playground_ticket_system/settings.py" afterDir="false" />
       <change beforePath="D:/PycharmProjects/playground_ticket_system/report.pdf" beforeDir="false" afterPath="D:/PycharmProjects/playground_ticket_system/report.pdf" afterDir="false" />
       <change beforePath="D:/PycharmProjects/playground_ticket_system/reservations/models.py" beforeDir="false" afterPath="D:/PycharmProjects/playground_ticket_system/reservations/models.py" afterDir="false" />
-      <change beforePath="D:/PycharmProjects/playground_ticket_system/reservations/urls.py" beforeDir="false" afterPath="D:/PycharmProjects/playground_ticket_system/reservations/urls.py" afterDir="false" />
       <change beforePath="D:/PycharmProjects/playground_ticket_system/reservations/views.py" beforeDir="false" afterPath="D:/PycharmProjects/playground_ticket_system/reservations/views.py" afterDir="false" />
-      <change beforePath="D:/PycharmProjects/playground_ticket_system/templates/AdminPage.html" beforeDir="false" afterPath="D:/PycharmProjects/playground_ticket_system/templates/AdminPage.html" afterDir="false" />
-      <change beforePath="D:/PycharmProjects/playground_ticket_system/templates/PrintTicket.html" beforeDir="false" afterPath="D:/PycharmProjects/playground_ticket_system/templates/PrintTicket.html" afterDir="false" />
-      <change beforePath="D:/PycharmProjects/playground_ticket_system/templates/Register.html" beforeDir="false" afterPath="D:/PycharmProjects/playground_ticket_system/templates/Register.html" afterDir="false" />
       <change beforePath="D:/PycharmProjects/playground_ticket_system/templates/index.html" beforeDir="false" afterPath="D:/PycharmProjects/playground_ticket_system/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -122,11 +118,27 @@
       <workItem from="1653726673556" duration="7135000" />
       <workItem from="1653748765304" duration="1309000" />
       <workItem from="1653753059075" duration="1110000" />
-      <workItem from="1653756835470" duration="2428000" />
+      <workItem from="1653756835470" duration="3392000" />
+      <workItem from="1653798006274" duration="357000" />
+      <workItem from="1653933875110" duration="24000" />
+      <workItem from="1653934664371" duration="6584000" />
+      <workItem from="1653948094367" duration="105000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

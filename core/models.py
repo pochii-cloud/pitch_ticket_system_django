@@ -1,3 +1,5 @@
+from datetime import datetime, date
+
 from django.db import models
 
 
@@ -35,6 +37,14 @@ class Fixture(models.Model):
 
     def __str__(self):
         return str(self.TeamA) + ":" + str('Vs') + ":" + str(self.TeamB)
+
+    def get_days_remaining_to_match(self, pk):
+        # gets the days remaining for the match to start
+        fixture = Fixture.objects.get(pk=pk)
+        today = date.today()
+        days = fixture.Date - today
+        fixture.save()
+        return days
 
 
 class Contact(models.Model):

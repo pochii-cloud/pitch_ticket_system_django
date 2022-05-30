@@ -55,7 +55,7 @@
           <li><a class="nav-link scrollto" href="{% url 'FixturesPage' %}">Fixtures</a></li>
           <li class="dropdown"><a href="#"><span>User</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
-              <li class="dropdown"><a href="{% url 'LoginPage' %}"><span>Login</span></a>
+              <li class="dropdown"><a href="{% url 'login' %}"><span>Login</span></a>
               <li class="dropdown"><a href="{% url 'RegisterUser' %}"><span>Register</span></a>
                 {% if request.user.is_authenticated %}
                     <li class="dropdown"><a href="{% url 'LogoutPage' %}"><span>Logout {{ request.user }}</span></a>
@@ -108,7 +108,7 @@
           <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out">
             <div class="service-item position-relative">
               <div class="icon"><i class="bi bi-person icon"></i></div>
-              <h4><a href="" class="stretched-link">Create Account</a></h4>
+              <h4><a href="{% url 'RegisterUser' %}" class="stretched-link">Create Account</a></h4>
               <p>Create account with us to make a reservation </p>
             </div>
           </div><!-- End Service Item -->
@@ -116,7 +116,7 @@
           <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="200">
             <div class="service-item position-relative">
               <div class="icon"><i class="bi bi-bounding-box-circles icon"></i></div>
-              <h4><a href="" class="stretched-link">Identify Fixture</a></h4>
+              <h4><a href="{% url 'FixturesPage' %}" class="stretched-link">Identify Fixture</a></h4>
               <p> Identify your favourite fixture to make a reservation</p>
             </div>
           </div><!-- End Service Item -->
@@ -124,7 +124,7 @@
           <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="400">
             <div class="service-item position-relative">
               <div class="icon"><i class="bi bi-pen icon"></i></div>
-              <h4><a href="" class="stretched-link">Make Reservation</a></h4>
+              <h4><a href="{% url 'FixturesPage' %}" class="stretched-link">Make Reservation</a></h4>
               <p>Make a booking of the fixture you want to watch</p>
             </div>
           </div><!-- End Service Item -->
@@ -132,7 +132,8 @@
           <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="600">
             <div class="service-item position-relative">
               <div class="icon"><i class="bi bi-calendar4-week  icon"></i></div>
-              <h4><a href="" class="stretched-link">Print Ticket</a></h4>
+
+              <h4><a href="" onclick="PrintTicketAlert()" class="stretched-link">Print Ticket</a></h4>
               <p>Print and download your ticket</p>
             </div>
           </div><!-- End Service Item -->
@@ -300,7 +301,11 @@
   <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 {#  <div id="preloader"></div>#}
-
+    <script>
+        function PrintTicketAlert() {
+            alert('select match to print ticket')
+        }
+    </script>
   <!-- Vendor JS Files -->
   <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'vendor/aos/aos.js' %}"></script>

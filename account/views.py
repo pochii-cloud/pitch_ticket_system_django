@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import logout
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -28,17 +29,18 @@ class LoginPage(LoginView):
     template_name = 'LoginPage.html'
 
 
-class AdminLogin(LoginView):
-    template_name = 'AdminLogin.html'
+class AdminLogin(UserPassesTestMixin, View):
+    def test_func(self):
+        return self.request.user.is_superuser
 
-    def dispatch(self, request, *args, **kwargs):
-        if not self.request.user.is_superuser:
-            return HttpResponse('you are not allowed to access this page')
-        elif self.request.user.is_superuser and self.request.user.is_superuser:
-            return redirect('AdminPage')
+    def get(self, request):
+        return redirect('AdminPage')
+
+    def post(self, request):
+        return redirect('AdminPage')
 
 
 class LogoutPage(View):
     def get(self, request, *args, **kwargs):
         logout(request)
-        return redirect('LoginPage')
+        return redirect('login')
